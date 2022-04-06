@@ -3,8 +3,7 @@ import random
 class Deck:
 	def __init__(self):
 		self.cards = []
-		self.delt = []
-		self.burnt = []
+		self.dealt = []
 
 	def ordered_deck(self):
 		for s in Card.get_suits():
@@ -13,9 +12,24 @@ class Deck:
 
 	def shuffle(self):
 		for i in range(0,52):
-
-			r = i + (random.randint(0,1000) % (52 - i))
+			r = i + (random.randint(0,55) % (52 - i))
 			self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
+
+	def deal_card(self):
+		if len(self.dealt) == 0:
+			self.cards.pop()
+			self.dealt.append(self.cards.pop())
+			self.dealt.append(self.cards.pop())
+			self.dealt.append(self.cards.pop())
+			return
+		if len(self.dealt) == 3:
+			self.cards.pop()
+			self.dealt.append(self.cards.pop())
+			return
+		if len(self.dealt) == 4:
+			self.cards.pop()
+			self.dealt.append(self.cards.pop())
+			return
 
 	def __str__(self):
 		output = ""
