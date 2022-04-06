@@ -1,12 +1,14 @@
-from cards import Card
+import itertools
+from itertools import permutations
+from cards import Card, Deck
 
 class Table:
-  def __init__(self, players, deck, player_hand = []):
+  def __init__(self, players, deck, player_hand = [], community_cards = []):
     self.players = players
     self.num_players = len(players)
     self.deck = deck
     self.player_hand = player_hand
-    self.community_cards = []
+    self.community_cards = community_cards
     
   def get_num_players(self):
     return self.num_players
@@ -26,7 +28,31 @@ class Table:
   def get_comm_cards(self):
     for card in self.community_cards:
       print(card)
-          
 
-  
-  
+  def get_hand(self):
+    all_hands = list(itertools.combinations(self.community_cards, 3))
+    for hand in all_hands:
+      print(hand[0], hand[1], hand[2])
+
+
+
+
+    # self.player_hand
+    # self.community_cards
+    flush = len(set([card.get_suit() for card in self.community_cards])) == 1
+    print(flush)
+
+c1 = Card("A", "s")
+c2 = Card("K", "s")
+
+b1 = Card("3", "s")
+b2 = Card("8", "s")
+b3 = Card("7", "s")
+b4 = Card("Q", "s")
+b5 = Card("J", "s")
+
+d = Deck()
+d.ordered_deck()
+d.shuffle()
+t = Table([], d, [c1, c2], [b1,b2,b3,b4,b5])
+t.get_hand()
