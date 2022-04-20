@@ -30,24 +30,27 @@ class Table:
       print(card)
 
   def get_hand(self):
-    all_hands = list(itertools.combinations(self.community_cards, 3))
+    all_hands = list(itertools.combinations(self.community_cards + self.player_hand, 5))
     for hand in all_hands:
-      print(hand[0], hand[1], hand[2])
+      if len(set([card.get_suit() for card in hand])) == 1:
+        print(True)
+        print(hand[0], hand[1], hand[2], hand[3], hand[4])
+        return
+
+      if len()
 
 
 
 
-    # self.player_hand
-    # self.community_cards
-    flush = len(set([card.get_suit() for card in self.community_cards])) == 1
-    print(flush)
+
+
 
 c1 = Card("A", "s")
 c2 = Card("K", "s")
 
-b1 = Card("3", "s")
-b2 = Card("8", "s")
-b3 = Card("7", "s")
+b1 = Card("3", "c")
+b2 = Card("8", "c")
+b3 = Card("7", "c")
 b4 = Card("Q", "s")
 b5 = Card("J", "s")
 
