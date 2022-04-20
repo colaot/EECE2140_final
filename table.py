@@ -9,7 +9,7 @@ class Table:
     self.deck = deck
     self.player_hand = player_hand
     self.community_cards = community_cards
-    
+
   def get_num_players(self):
     return self.num_players
 
@@ -21,13 +21,15 @@ class Table:
         else:
           self.player_hand.append(self.deck.pop())
 
+  def get_player_hand(self):
+    return self.player_hand
+
   def deal_comm_cards(self):
     self.deck.deal_card()
     self.community_cards = self.deck.dealt
 
   def get_comm_cards(self):
-    for card in self.community_cards:
-      print(card)
+    return self.community_cards
 
   def get_hand(self):
     all_hands = list(itertools.combinations(self.community_cards + self.player_hand, 5))
@@ -37,7 +39,6 @@ class Table:
         print(hand[0], hand[1], hand[2], hand[3], hand[4])
         return
 
-      if len()
 
 
 

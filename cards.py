@@ -89,5 +89,13 @@ class Card:
 	def get_suits():
 		return ["s", "c", "h", "d"]
 
+	@staticmethod
+	def card_sort(h):
+		h = list(h)
+		h.sort(key = Card.get_rank)
+		return h
+
 	def __str__(self):
 		return self.get_rank() + " of " + self.get_suit()
+
+	print()
