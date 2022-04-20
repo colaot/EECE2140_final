@@ -13,6 +13,9 @@ class Table:
   def get_num_players(self):
     return self.num_players
 
+  def get_deck(self):
+    return self.deck
+
   def deal(self):
     for i in [1, 2]:
       for i in range(self.num_players):

@@ -25,6 +25,9 @@ def main():
 
 		t = Table([None, 'hero'], d, player_hand = [card1, card2])
 
+		t.get_deck().get_cards().remove(card1)
+		t.get_deck().get_cards().remove(card2)
+
 	else:
 		t = Table([None, 'hero'], d)
 		t.deal()
