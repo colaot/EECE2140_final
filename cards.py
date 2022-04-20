@@ -95,7 +95,7 @@ class Card:
 	@staticmethod
 	def card_sort(h):
 		h = list(h)
-		h.sort(key = Card.get_rank)
+		h.sort(key = Card.get_value)
 		return h
 
 	def __str__(self):
