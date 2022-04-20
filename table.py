@@ -15,11 +15,11 @@ class Table:
 
   def deal(self):
     for i in [1, 2]:
-      for i in range(num_players):
-        if (players[i] == None):
-          self.deck.pop()
+      for i in range(self.num_players):
+        if (self.players[i] == None):
+          self.deck.get_cards().pop()
         else:
-          self.player_hand.append(self.deck.pop())
+          self.player_hand.append(self.deck.get_cards().pop())
 
   def get_player_hand(self):
     return self.player_hand
