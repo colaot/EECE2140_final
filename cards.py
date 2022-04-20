@@ -98,6 +98,12 @@ class Card:
 		h.sort(key = Card.get_rank)
 		return h
 
+	def __eq__(self, other):
+		if (self.rank == other.rank and self.suit == other.suit):
+			return True
+		else:
+			return False
+
 	def __str__(self):
 		return self.get_rank() + " of " + self.get_suit()
 
