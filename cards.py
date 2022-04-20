@@ -5,6 +5,9 @@ class Deck:
 		self.cards = []
 		self.dealt = []
 
+	def get_cards(self):
+		return self.cards
+
 	def ordered_deck(self):
 		for s in Card.get_suits():
 			for r in Card.get_ranks():
