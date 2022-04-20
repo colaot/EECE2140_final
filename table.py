@@ -21,12 +21,15 @@ class Table:
         else:
           self.player_hand.append(self.deck.pop())
 
+  def get_player_hand(self):
+    return self.player_hand
+
   def deal_comm_cards(self):
     self.deck.deal_card()
     self.community_cards = self.deck.dealt
 
   def get_comm_cards(self):
-    for card in self.community_cards:
+    return self.community_cards
       print(card)
 
   def get_hand(self):
