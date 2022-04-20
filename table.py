@@ -32,12 +32,43 @@ class Table:
   def get_hand(self):
     all_hands = list(itertools.combinations(self.community_cards + self.player_hand, 5))
     for hand in all_hands:
-      if len(set([card.get_suit() for card in hand])) == 1:
-        print(True)
-        print(hand[0], hand[1], hand[2], hand[3], hand[4])
-        return
 
-      if len()
+      freq = {}
+      for card in hand:
+        if card.get_rank() in freq:
+          freq[card.get_rank()] += 1
+        else:
+          freq[card.get_rank()] = 1
+      print(freq)
+
+  @staticmethod
+  def flush(hand):
+    if len(set([card.get_suit() for card in hand])) == 1:
+        return True
+    return False
+  @staticmethod
+  def quads(freq):
+    for num in freq.values():
+      if num == 4:
+        return True
+    return False
+
+  @staticmethod
+  def trips(freq):
+    for num in freq.values():
+      if num == 3:
+        return True
+    return False
+
+  @staticmethod
+  def pair(freq):
+    high_pair == 
+    for num in freq.values():
+      if num == 2:
+
+      if num == 3:
+        return True
+
 
 
 
@@ -48,9 +79,9 @@ class Table:
 c1 = Card("A", "s")
 c2 = Card("K", "s")
 
-b1 = Card("3", "c")
-b2 = Card("8", "c")
-b3 = Card("7", "c")
+b1 = Card("A", "c")
+b2 = Card("A", "d")
+b3 = Card("A", "h")
 b4 = Card("Q", "s")
 b5 = Card("J", "s")
 
