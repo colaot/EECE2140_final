@@ -34,6 +34,12 @@ class Deck:
 			self.dealt.append(self.cards.pop())
 			return
 
+	def place_cards(self, placed_cards):
+		for placed_card in placed_cards:
+			self.dealt.append(placed_card)
+			self.cards.remove(placed_card)
+		return
+
 	def __str__(self):
 		output = ""
 		for card in self.cards:
