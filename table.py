@@ -31,6 +31,10 @@ class Table:
     self.deck.deal_card()
     self.community_cards = self.deck.dealt
 
+  def place_comm_cards(self, cards):
+    self.deck.place_cards(cards)
+    self.community_cards = self.deck.dealt
+
   def get_comm_cards(self):
     return self.community_cards
 
