@@ -160,7 +160,7 @@ class Table:
     return output
 
   def pockets(self):
-    if self.player_hand[0] == self.player_hand[1]:
+    if self.player_hand[0].get_value() == self.player_hand[1].get_value():
       return 2
 
   def overcard(self):
@@ -174,15 +174,31 @@ class Table:
       return 6
 
   def s_draw_in(self):
-    hands = self.get_all_hands()
-    for hand in hands:
-      draw = list(itertools.combinations(hand, 3))
-      print()
-      for h in draw:
-        if h[1].get_value() - h[0].get_value() == 1:
-          if h[2].get_value() - h[1].get_value() == 1:
-            print(h[0], h[1], h[2])
-            return 4
+    sd = []
+    draw_count = 0
+    max_draw_count = 0
+    if abs(self.player_hand[0].get_value() - self.player_hand[1].get_value()) < 5:
+      all_hands = list(itertools.combinations(self.community_cards, 3))
+      for comm_hand in all_hands:
+        sd.append(self.player_hand[0])
+        sd.append(self.player_hand[1])
+        for card in comm_hand:
+          sd.append(card)
+        sd = Card.card_sort(sd)
+        prev = sd[0]
+        for i in range(1, 5):
+          if sd[i].get_value() - prev.get_value() < 5:
+            draw_count += 1
+          prev = sd[i]
+        if draw_count > max_draw_count:
+          max_draw_count = draw_count
+        for card in sd:
+          print(card, end = " ")
+        print(draw_count)
+        draw_count = 0
+        sd = []
+
+      return max_draw_count
 
   def fh_draw(self):
     hands = self.get_all_hands(True)
@@ -202,6 +218,32 @@ class Table:
       if not Table.pair(hand):
         return 6
 
+  def set(self):
+    if self.pockets():
+      for card in self.community_cards:
+        if self.player_hand[0].get_value() == card.get_value():
+          return 7
+
+  def s_draw_open(self):
+    hands = self.get_all_hands()
+    for hand in hands:
+      draw = list(itertools.combinations(hand, 3))
+      for h in draw:
+        if h[1].get_value() - h[0].get_value() == 1:
+          if h[2].get_value() - h[1].get_value() == 1:
+            return 8
+
+  def flush_draw(self):
+    if self.player_hand[0].get_suit() == self.player_hand[1].get_suit():
+      for card in self.community_cards:
+        if card.get_suit() == self.player_hand[0].get_suit():
+          return 9
+
+
+
+
+
+
 
 
 
@@ -209,23 +251,44 @@ class Table:
 
 
   def get_outs(self):
-    pass
+    outs = 0
+    # open straight and flush draw
+    if self.flush_draw():
+      outs += self.flush_draw()
+    elif self.s_draw_open():
+      outs += self.s_draw_open()
+    elif self.set():
+      outs += self.set()
+    elif self.overcard() == 6:
+      outs += self.overcard()
+    elif self.no_pair():
+      outs += self.no_pair
+    elif self.pair_draw():
+      outs += self.pair_draw()
+    elif self.fh_draw():
+      outs += self.fh_draw()
+    elif self.overcard():
+      outs += self.overcard()
+    elif self.pockets():
+      outs += self.pockets()
+    return (outs * 4)- (outs - 8)
 
 
-c1 = Card("3", "s")
-c2 = Card("K", "s")
 
-b1 = Card("Q", "c")
-b2 = Card("2", "d")
-b3 = Card("10", "s")
-b4 = Card("Q", "s")
-b5 = Card("J", "s")
+c1 = Card("K", "h")
+c2 = Card("K", "d")
+
+b1 = Card("Q", "h")
+b2 = Card("8", "d")
+b3 = Card("K", "c")
+b4 = Card("3", "d")
+b5 = Card("2", "s")
 
 d = Deck()
 d.ordered_deck()
 d.shuffle()
 t = Table([], d, [c1, c2], [b1,b2,b3,b4,b5])
-print(t.overcard())
+print(t.get_outs())
 # for hand in t.get_all_hands():
 #   print()
 #   for card in hand:

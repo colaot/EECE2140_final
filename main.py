@@ -2,7 +2,7 @@ from cards import Card, Deck
 from table import Table
 
 def main():
-	user_mode = input('Have you already been dealt cards? (Y/N): ')
+	user_mode = input('Have you already been dealt cards? (Y/N): ').upper()
 
 	d = Deck()
 	d.ordered_deck()
@@ -108,29 +108,29 @@ def main():
 																			   '0', '0', '0'
 
 		while (rank1 not in Card.get_ranks()):
-			rank1 = input('What is the rank of the first card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			rank1 = input('What is the rank of the first card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
 		while (suit1 not in Card.get_suits()):
-			suit1 = input('What is the suit of the first card? (\'s\', \'c\', \'h\', \'d\')')
+			suit1 = input('What is the suit of the first card? (\'s\', \'c\', \'h\', \'d\') ')
 		while (rank2 not in Card.get_ranks()):
-			rank2 = input('What is the rank of the second card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			rank2 = input('What is the rank of the second card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
 		while (suit2 not in Card.get_suits()):
-			suit2 = input('What is the suit of the second card? (\'s\', \'c\', \'h\', \'d\')')
+			suit2 = input('What is the suit of the second card? (\'s\', \'c\', \'h\', \'d\') ')
 		while (rank3 not in Card.get_ranks()):
-			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
 		while (suit3 not in Card.get_suits()):
-			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\')')
+			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\') ')
 		while (rank3 not in Card.get_ranks()):
-			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
 		while (suit3 not in Card.get_suits()):
-			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\')')
+			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\') ')
 		while (rank4 not in Card.get_ranks()):
-			rank4 = input('What is the rank of the fourth card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			rank4 = input('What is the rank of the fourth card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
 		while (suit4 not in Card.get_suits()):
-			suit4 = input('What is the suit of the fourth card? (\'s\', \'c\', \'h\', \'d\')')
+			suit4 = input('What is the suit of the fourth card? (\'s\', \'c\', \'h\', \'d\') ')
 		while (rank5 not in Card.get_ranks()):
-			rank5 = input('What is the rank of the fifth card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			rank5 = input('What is the rank of the fifth card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
 		while (suit5 not in Card.get_suits()):
-			suit5 = input('What is the suit of the fifth card? (\'s\', \'c\', \'h\', \'d\')')
+			suit5 = input('What is the suit of the fifth card? (\'s\', \'c\', \'h\', \'d\') ')
 
 		card1 = Card(rank1, suit1)
 		card2 = Card(rank2, suit2)
@@ -145,6 +145,7 @@ def main():
 	pot = float(input('Enter the size of the pot: '))
 	call = float(input('Enter the amount needed to call: '))
 
+	wOdds = t.get_outs() / 100
 	lOdds = 1 - wOdds
 
 	ev = (wOdds * pot) - (lOdds * call)
