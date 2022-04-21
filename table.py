@@ -259,4 +259,7 @@ class Table:
       outs += self.overcard()
     elif self.pockets():
       outs += self.pockets()
-    return (outs * 4)- (outs - 8)
+    if len(self.community_cards) == 4:
+      return (outs * 4) - (outs - 8)
+    else:
+      return (outs * 8) - (outs - 8)
