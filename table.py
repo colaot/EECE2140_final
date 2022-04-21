@@ -38,10 +38,11 @@ class Table:
   def get_comm_cards(self):
     return self.community_cards
 
-  def get_all_hands(self):
+  def get_all_hands(self, freq = False):
     all_hands = list(itertools.combinations(self.community_cards, 3))
     a = []
     output = []
+    output_freq = []
     for hand in all_hands:
       for card in hand:
         a.append(card)
@@ -50,6 +51,17 @@ class Table:
       a = Card.card_sort(a)
       output.append(a)
       a = []
+
+    if freq:
+      for hand in output:
+        freq = {}
+        for card in hand:
+          if card.get_rank() in freq:
+            freq[card.get_rank()] += 1
+          else:
+            freq[card.get_rank()] = 1
+        output_freq.append(freq)
+      return output_freq
     return output
 
 
@@ -145,8 +157,6 @@ class Table:
         output.append(num)
     if len(output) == 0:
       return False
-    elif len(output) == 1:
-      return 
     return output
 
   def pockets(self):
@@ -154,22 +164,45 @@ class Table:
       return 2
 
   def overcard(self):
+    overs = 0
     for card in self.player_hand:
-      if set([c for c in self.community_cards if c.get_value > card]) == True:
-        return 3
+      if set([c.get_value() < card.get_value() for c in self.community_cards]) == {True}:
+        overs += 1
+    if overs == 1:
+      return 3
+    elif overs == 2:
+      return 6
 
   def s_draw_in(self):
     hands = self.get_all_hands()
-    bool = True
     for hand in hands:
-      for i in range(0, 3):
-        prev = hand[i]
-        for j in range(1, 3):
-          if hand[j].get_value() - prev.get_value() != 1:
-            bool = False
-          hand[j]
+      draw = list(itertools.combinations(hand, 3))
+      print()
+      for h in draw:
+        if h[1].get_value() - h[0].get_value() == 1:
+          if h[2].get_value() - h[1].get_value() == 1:
+            print(h[0], h[1], h[2])
+            return 4
 
-    return bool
+  def fh_draw(self):
+    hands = self.get_all_hands(True)
+    for hand in hands:
+      if Table.pair(hand) and len(Table.pair(hand)) == 2:
+        return 4
+
+  def pair_draw(self):
+    hands = self.get_all_hands(True)
+    for hand in hands:
+      if Table.pair(hand) and len(Table.pair(hand)) == 1:         
+        return 5
+
+  def no_pair(self):
+    hands = self.get_all_hands(True)
+    for hand in hands:
+      if not Table.pair(hand):
+        return 6
+
+
 
 
 
@@ -179,11 +212,11 @@ class Table:
     pass
 
 
-c1 = Card("A", "s")
+c1 = Card("3", "s")
 c2 = Card("K", "s")
 
-b1 = Card("A", "c")
-b2 = Card("K", "d")
+b1 = Card("Q", "c")
+b2 = Card("2", "d")
 b3 = Card("10", "s")
 b4 = Card("Q", "s")
 b5 = Card("J", "s")
@@ -192,7 +225,7 @@ d = Deck()
 d.ordered_deck()
 d.shuffle()
 t = Table([], d, [c1, c2], [b1,b2,b3,b4,b5])
-print(t.s_draw_in())
+print(t.overcard())
 # for hand in t.get_all_hands():
 #   print()
 #   for card in hand:
