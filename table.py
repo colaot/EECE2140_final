@@ -34,6 +34,21 @@ class Table:
   def get_comm_cards(self):
     return self.community_cards
 
+  def get_all_hands(self):
+    all_hands = list(itertools.combinations(self.community_cards, 3))
+    a = []
+    output = []
+    for hand in all_hands:
+      for card in hand:
+        a.append(card)
+      for card in self.player_hand:
+        a.append(card)
+      a = Card.card_sort(a)
+      output.append(a)
+      a = []
+    return output
+
+
   def get_hand(self):
     all_best_hand = []
     best_hand = []
@@ -54,6 +69,8 @@ class Table:
       t = Table.trips(freq)
       p = Table.pair(freq)
       
+      if f and s and s == "Ace":
+        curr.append((10, s))
       if f and s and s not in curr:
         curr.append((9, s))
       if q and q not in curr:
@@ -79,7 +96,7 @@ class Table:
         if hand[0][0] > high:
           high = hand[0][0]
           best_hand = hand
-    print(best_hand)
+    return best_hand
 
 
   @staticmethod
@@ -125,8 +142,38 @@ class Table:
     if len(output) == 0:
       return False
     elif len(output) == 1:
-      return output[0]
+      return 
     return output
+
+  def pockets(self):
+    if self.player_hand[0] == self.player_hand[1]:
+      return 2
+
+  def overcard(self):
+    for card in self.player_hand:
+      if set([c for c in self.community_cards if c.get_value > card]) == True:
+        return 3
+
+  def s_draw_in(self):
+    hands = self.get_all_hands()
+    bool = True
+    for hand in hands:
+      for i in range(0, 3):
+        prev = hand[i]
+        for j in range(1, 3):
+          if hand[j].get_value() - prev.get_value() != 1:
+            bool = False
+          hand[j]
+
+    return bool
+
+
+
+
+
+  def get_outs(self):
+    pass
+
 
 c1 = Card("A", "s")
 c2 = Card("K", "s")
@@ -141,4 +188,8 @@ d = Deck()
 d.ordered_deck()
 d.shuffle()
 t = Table([], d, [c1, c2], [b1,b2,b3,b4,b5])
-t.get_hand()
+print(t.s_draw_in())
+# for hand in t.get_all_hands():
+#   print()
+#   for card in hand:
+#     print(card, end = " ")
