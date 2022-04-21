@@ -239,20 +239,8 @@ class Table:
         if card.get_suit() == self.player_hand[0].get_suit():
           return 9
 
-
-
-
-
-
-
-
-
-
-
-
   def get_outs(self):
     outs = 0
-    # open straight and flush draw
     if self.flush_draw():
       outs += self.flush_draw()
     elif self.s_draw_open():
@@ -272,24 +260,3 @@ class Table:
     elif self.pockets():
       outs += self.pockets()
     return (outs * 4)- (outs - 8)
-
-
-
-c1 = Card("K", "h")
-c2 = Card("K", "d")
-
-b1 = Card("Q", "h")
-b2 = Card("8", "d")
-b3 = Card("K", "c")
-b4 = Card("3", "d")
-b5 = Card("2", "s")
-
-d = Deck()
-d.ordered_deck()
-d.shuffle()
-t = Table([], d, [c1, c2], [b1,b2,b3,b4,b5])
-# print(t.get_outs())
-# for hand in t.get_all_hands():
-#   print()
-#   for card in hand:
-#     print(card, end = " ")
