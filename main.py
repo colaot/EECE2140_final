@@ -35,110 +35,69 @@ def main():
 	for card in t.get_player_hand():
 		print(card)
 	print()
-	'''t.deal_comm_cards()
-	for card in t.get_comm_cards():
-		print(card)
-	print()
-	t.deal_comm_cards()
-	for card in t.get_comm_cards():
-		print(card)
-	print()
-	t.deal_comm_cards()
-	for card in t.get_comm_cards():
-		print(card)
-	print()'''
 
-	stage = input('Is this the flop, turn, or river? (F/T/R): ')
+	user_mode2 = input('Have the community cards been dealt? (Y/N): ').upper()
 
-	if (stage == 'F'):
-		rank1, rank2, rank3, suit1, suit2, suit3 = '0', '0', '0', '0', '0', '0'
-
-		while (rank1 not in Card.get_ranks()):
-			rank1 = input('What is the rank of the first card? (Number or \'J\', \'Q\', \'K\', \'A\')')
-		while (suit1 not in Card.get_suits()):
-			suit1 = input('What is the suit of the first card? (\'s\', \'c\', \'h\', \'d\')')
-		while (rank2 not in Card.get_ranks()):
-			rank2 = input('What is the rank of the second card? (Number or \'J\', \'Q\', \'K\', \'A\')')
-		while (suit2 not in Card.get_suits()):
-			suit2 = input('What is the suit of the second card? (\'s\', \'c\', \'h\', \'d\')')
-		while (rank3 not in Card.get_ranks()):
-			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\')')
-		while (suit3 not in Card.get_suits()):
-			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\')')
-
-		card1 = Card(rank1, suit1)
-		card2 = Card(rank2, suit2)
-		card3 = Card(rank3, suit3)
-
-		t.place_comm_cards([card1, card2, card3])
-
-	elif (stage == 'T'):
-		rank1, rank2, rank3, rank4, suit1, suit2, suit3, suit4 = '0', '0', '0', '0', '0', '0', '0', '0'
-
-		while (rank1 not in Card.get_ranks()):
-			rank1 = input('What is the rank of the first card? (Number or \'J\', \'Q\', \'K\', \'A\')')
-		while (suit1 not in Card.get_suits()):
-			suit1 = input('What is the suit of the first card? (\'s\', \'c\', \'h\', \'d\')')
-		while (rank2 not in Card.get_ranks()):
-			rank2 = input('What is the rank of the second card? (Number or \'J\', \'Q\', \'K\', \'A\')')
-		while (suit2 not in Card.get_suits()):
-			suit2 = input('What is the suit of the second card? (\'s\', \'c\', \'h\', \'d\')')
-		while (rank3 not in Card.get_ranks()):
-			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\')')
-		while (suit3 not in Card.get_suits()):
-			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\')')
-		while (rank3 not in Card.get_ranks()):
-			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\')')
-		while (suit3 not in Card.get_suits()):
-			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\')')
-		while (rank4 not in Card.get_ranks()):
-			rank4 = input('What is the rank of the fourth card? (Number or \'J\', \'Q\', \'K\', \'A\')')
-		while (suit4 not in Card.get_suits()):
-			suit4 = input('What is the suit of the fourth card? (\'s\', \'c\', \'h\', \'d\')')
-
-		card1 = Card(rank1, suit1)
-		card2 = Card(rank2, suit2)
-		card3 = Card(rank3, suit3)
-		card4 = Card(rank4, suit4)
-
-		t.place_comm_cards([card1, card2, card3, card4])
-
+	if user_mode2 == 'N':
+		t.deal_comm_cards()
+		for card in t.get_comm_cards():
+			print(card)
+		print()
 	else:
-		rank1, rank2, rank3, rank4, rank5, suit1, suit2, suit3, suit4, suit5 = '0', '0', '0', '0', '0', '0', '0', \
-																			   '0', '0', '0'
+		stage = input('Is this the flop or turn? (F/T): ')
 
-		while (rank1 not in Card.get_ranks()):
-			rank1 = input('What is the rank of the first card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
-		while (suit1 not in Card.get_suits()):
-			suit1 = input('What is the suit of the first card? (\'s\', \'c\', \'h\', \'d\') ')
-		while (rank2 not in Card.get_ranks()):
-			rank2 = input('What is the rank of the second card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
-		while (suit2 not in Card.get_suits()):
-			suit2 = input('What is the suit of the second card? (\'s\', \'c\', \'h\', \'d\') ')
-		while (rank3 not in Card.get_ranks()):
-			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
-		while (suit3 not in Card.get_suits()):
-			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\') ')
-		while (rank3 not in Card.get_ranks()):
-			rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
-		while (suit3 not in Card.get_suits()):
-			suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\') ')
-		while (rank4 not in Card.get_ranks()):
-			rank4 = input('What is the rank of the fourth card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
-		while (suit4 not in Card.get_suits()):
-			suit4 = input('What is the suit of the fourth card? (\'s\', \'c\', \'h\', \'d\') ')
-		while (rank5 not in Card.get_ranks()):
-			rank5 = input('What is the rank of the fifth card? (Number or \'J\', \'Q\', \'K\', \'A\') ')
-		while (suit5 not in Card.get_suits()):
-			suit5 = input('What is the suit of the fifth card? (\'s\', \'c\', \'h\', \'d\') ')
+		if (stage == 'F'):
+			rank1, rank2, rank3, suit1, suit2, suit3 = '0', '0', '0', '0', '0', '0'
 
-		card1 = Card(rank1, suit1)
-		card2 = Card(rank2, suit2)
-		card3 = Card(rank3, suit3)
-		card4 = Card(rank4, suit4)
-		card5 = Card(rank5, suit5)
+			while (rank1 not in Card.get_ranks()):
+				rank1 = input('What is the rank of the first card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			while (suit1 not in Card.get_suits()):
+				suit1 = input('What is the suit of the first card? (\'s\', \'c\', \'h\', \'d\')')
+			while (rank2 not in Card.get_ranks()):
+				rank2 = input('What is the rank of the second card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			while (suit2 not in Card.get_suits()):
+				suit2 = input('What is the suit of the second card? (\'s\', \'c\', \'h\', \'d\')')
+			while (rank3 not in Card.get_ranks()):
+				rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			while (suit3 not in Card.get_suits()):
+				suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\')')
 
-		t.place_comm_cards([card1, card2, card3, card4, card5])
+			card1 = Card(rank1, suit1)
+			card2 = Card(rank2, suit2)
+			card3 = Card(rank3, suit3)
+
+			t.place_comm_cards([card1, card2, card3])
+
+		else:
+			rank1, rank2, rank3, rank4, suit1, suit2, suit3, suit4 = '0', '0', '0', '0', '0', '0', '0', '0'
+
+			while (rank1 not in Card.get_ranks()):
+				rank1 = input('What is the rank of the first card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			while (suit1 not in Card.get_suits()):
+				suit1 = input('What is the suit of the first card? (\'s\', \'c\', \'h\', \'d\')')
+			while (rank2 not in Card.get_ranks()):
+				rank2 = input('What is the rank of the second card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			while (suit2 not in Card.get_suits()):
+				suit2 = input('What is the suit of the second card? (\'s\', \'c\', \'h\', \'d\')')
+			while (rank3 not in Card.get_ranks()):
+				rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			while (suit3 not in Card.get_suits()):
+				suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\')')
+			while (rank3 not in Card.get_ranks()):
+				rank3 = input('What is the rank of the third card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			while (suit3 not in Card.get_suits()):
+				suit3 = input('What is the suit of the third card? (\'s\', \'c\', \'h\', \'d\')')
+			while (rank4 not in Card.get_ranks()):
+				rank4 = input('What is the rank of the fourth card? (Number or \'J\', \'Q\', \'K\', \'A\')')
+			while (suit4 not in Card.get_suits()):
+				suit4 = input('What is the suit of the fourth card? (\'s\', \'c\', \'h\', \'d\')')
+
+			card1 = Card(rank1, suit1)
+			card2 = Card(rank2, suit2)
+			card3 = Card(rank3, suit3)
+			card4 = Card(rank4, suit4)
+
+			t.place_comm_cards([card1, card2, card3, card4])
 
 	players_best_hand = t.get_hand()
 

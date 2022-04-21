@@ -262,7 +262,7 @@ class Table:
     elif self.overcard() == 6:
       outs += self.overcard()
     elif self.no_pair():
-      outs += self.no_pair
+      outs += self.no_pair()
     elif self.pair_draw():
       outs += self.pair_draw()
     elif self.fh_draw():
@@ -288,7 +288,7 @@ d = Deck()
 d.ordered_deck()
 d.shuffle()
 t = Table([], d, [c1, c2], [b1,b2,b3,b4,b5])
-print(t.get_outs())
+# print(t.get_outs())
 # for hand in t.get_all_hands():
 #   print()
 #   for card in hand:

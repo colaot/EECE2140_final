@@ -19,17 +19,10 @@ class Deck:
 			self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
 
 	def deal_card(self):
-		if len(self.dealt) == 0:
 			self.cards.pop()
 			self.dealt.append(self.cards.pop())
 			self.dealt.append(self.cards.pop())
 			self.dealt.append(self.cards.pop())
-			return
-		if len(self.dealt) == 3:
-			self.cards.pop()
-			self.dealt.append(self.cards.pop())
-			return
-		if len(self.dealt) == 4:
 			self.cards.pop()
 			self.dealt.append(self.cards.pop())
 			return
@@ -113,4 +106,3 @@ class Card:
 	def __str__(self):
 		return self.get_rank() + " of " + self.get_suit()
 
-	print()
