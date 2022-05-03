@@ -117,6 +117,17 @@ class Table:
 
   @staticmethod
   def flush(hand):
+    """
+    Returns whether a hand has a flush and, if so, the highest rank
+
+    Parameters
+    ----------
+    hand: list
+
+    Return
+    ------
+    Boolean or String
+    """
     max = hand[0]
     if len(set([card.get_suit() for card in hand])) == 1:
         for card in hand:
@@ -127,6 +138,17 @@ class Table:
 
   @staticmethod
   def straight(hand):
+    """
+    Returns whether a hand has a straight and, if so, the highest rank
+
+    Parameters
+    ----------
+    hand: list
+
+    Return
+    ------
+    Boolean or String
+    """
     s = Card.card_sort(hand)
     prev = s[0]
     for i in range(1, 5):
@@ -137,6 +159,17 @@ class Table:
 
   @staticmethod
   def quads(freq):
+    """
+    Returns whether a hand has four of a kind and, if so, its rank
+
+    Parameters
+    ----------
+    freq: Dictionary
+
+    Return
+    ------
+    Boolean or String
+    """
     for num in freq.values():
       if num == 4:
         return list(freq.keys())[list(freq.values()).index(num)]
@@ -144,6 +177,17 @@ class Table:
 
   @staticmethod
   def trips(freq):
+    """
+    Returns whether a hand has three of a kind and, if so, its rank
+
+    Parameters
+    ----------
+    freq: Dictionary
+
+    Return
+    ------
+    Boolean or String
+    """
     for num in freq.values():
       if num == 3:
         return list(freq.keys())[list(freq.values()).index(num)]
@@ -151,6 +195,17 @@ class Table:
 
   @staticmethod
   def pair(freq):
+    """
+    Returns whether a hand has a pair and, if so, its rank
+
+    Parameters
+    ----------
+    freq: Dictionary
+
+    Return
+    ------
+    Boolean or String
+    """
     output = []
     for num in freq.keys():
       if freq[num] == 2:
