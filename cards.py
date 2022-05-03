@@ -184,6 +184,10 @@ class Card:
 		"""
 		Returns a sorted list of the given cards
 
+		Parameters
+		----------
+		h: list
+
 		Return
 		------
 		List
@@ -195,6 +199,10 @@ class Card:
 	def __eq__(self, other):
 		"""
 		Returns whether two cards are equal
+
+		Parameters
+		----------
+		other: Card
 
 		Return
 		------
