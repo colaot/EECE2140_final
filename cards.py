@@ -66,7 +66,7 @@ class Deck:
 
 	def __str__(self):
 		"""
-		Reprents a deck of cards as a string
+		Represents a deck of cards as a string
 
 		Return
 		------
@@ -97,7 +97,7 @@ class Card:
 
 		Return
 		------
-		
+		Integer
 		"""
 		if self.rank == "A":
 			return 14
@@ -112,6 +112,13 @@ class Card:
 
 
 	def get_rank(self):
+		"""
+		Returns the rank of the card
+
+		Return
+		------
+		String
+		"""
 		if self.rank == "A":
 			return "Ace"
 		elif self.rank == "K":
@@ -124,6 +131,13 @@ class Card:
 			return self.rank
 
 	def get_suit(self):
+		"""
+		Returns the suit of the card
+
+		Return
+		------
+		String
+		"""
 		if self.suit == "s":
 			return "Spades"
 		elif self.suit == "h":
@@ -134,28 +148,70 @@ class Card:
 			return "Diamonds"
 
 	def get_card(self):
+		"""
+		Returns the attributes of the card
+
+		Return
+		------
+		String
+		"""
 		return self.rank + self.suit
 
 	@staticmethod
 	def get_ranks():
+		"""
+		Returns the valid ranks of cards
+
+		Return
+		------
+		List
+		"""
 		return ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 
 	@staticmethod
 	def get_suits():
+		"""
+		Returns the valid suits of cards
+
+		Return
+		------
+		List
+		"""
 		return ["s", "c", "h", "d"]
 
 	@staticmethod
 	def card_sort(h):
+		"""
+		Returns a sorted list of the given cards
+
+		Return
+		------
+		List
+		"""
 		h = list(h)
 		h.sort(key = Card.get_value)
 		return h
 
 	def __eq__(self, other):
+		"""
+		Returns whether two cards are equal
+
+		Return
+		------
+		Boolean
+		"""
 		if (self.rank == other.rank and self.suit == other.suit):
 			return True
 		else:
 			return False
 
 	def __str__(self):
+		"""
+		Formats a comprehensible representation of a card
+
+		Return
+		------
+		String
+		"""
 		return self.get_rank() + " of " + self.get_suit()
 
